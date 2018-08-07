@@ -21,7 +21,7 @@ public class Downloader {
 
     /**20MB*/
     private static int blockSize=20480000;
-    private static String url="http://10.0.16.79:2568/multiDownload/download";
+    private static String url="http://0.0.0.0/multiDownload/download";
     private static String storeDir;
 
     @Value("${multiDownload.customer.storeDir}")
