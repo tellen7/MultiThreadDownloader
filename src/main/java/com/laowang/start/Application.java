@@ -1,4 +1,4 @@
-package com.ths.start;
+package com.laowang.start;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @EnableScheduling
-@ComponentScan("com.ths")
+@ComponentScan("com.laowang")
 public class Application {
 
 

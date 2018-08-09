@@ -1,4 +1,4 @@
-package com.ths.web;
+package com.laowang.web;
 
 import org.apache.http.HeaderElement;
 import org.apache.http.HeaderElementIterator;

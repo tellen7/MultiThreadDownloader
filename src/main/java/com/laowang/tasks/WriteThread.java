@@ -1,9 +1,9 @@
-package com.ths.tasks;
+package com.laowang.tasks;
 
-import com.ths.domain.ControlBean;
-import com.ths.domain.DownloadBlock;
-import com.ths.domain.Result;
-import com.ths.utils.FileUtils;
+import com.laowang.domain.ControlBean;
+import com.laowang.domain.DownloadBlock;
+import com.laowang.domain.Result;
+import com.laowang.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -11,11 +11,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author wangyonghao
@@ -65,29 +60,4 @@ public class WriteThread implements Runnable {
         }
     }
 
-
-    public boolean markFileDownloaded(DownloadBlock block) {
-        //设置请求
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        MultiValueMap<String, String> param = new LinkedMultiValueMap<String, String>();
-        //设置token
-        param.add("token", token);
-        param.add("serverFile", block.getServerFilePath());
-        HttpEntity<MultiValueMap> httpEntity = new HttpEntity(param, headers);
-
-        try {
-            ResponseEntity<Result> response = restTemplate.exchange(url, HttpMethod.POST, httpEntity, Result.class);
-            if (response.getBody().getCode() == Result.StatusCode.SUCCESS) {
-                ControlBean.filesCurrent.remove(block.getServerFilePath());
-                ControlBean.filesTotal.remove(block.getServerFilePath());
-                return true;
-            } else {
-                return false;
-            }
-        } catch (RestClientException e) {
-            log.error("===>标记服务端下载文件完成的请求获取响应失败 {}" + e);
-            return false;
-        }
-    }
 }

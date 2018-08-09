@@ -1,9 +1,9 @@
-package com.ths.tasks;
+package com.laowang.tasks;
 
-import com.ths.domain.DownloadBlock;
-import com.ths.domain.ControlBean;
-import com.ths.domain.Result;
-import com.ths.utils.MarkUtils;
+import com.laowang.domain.DownloadBlock;
+import com.laowang.domain.ControlBean;
+import com.laowang.domain.Result;
+import com.laowang.utils.MarkUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
@@ -71,8 +71,13 @@ public class DownloadThread implements Runnable {
             } else {
                 //这里能收到response
                 log.info("===>失败下载{}【No.{}块文件块】", block.getServerFilePath(), block.getNumber());
-                //某个文件块下载失败次数到达10次，则需要丢弃文件对应的文件块以及删除本地temp文件
-                ControlBean.loseBlocks.add(block);
+                //某个文件块下载失败次数到达3次，则需要丢弃文件对应的文件块以及删除本地temp文件
+                block.getFailCount().addAndGet(1);
+                if (block.getFailCount().get() > 3){
+                    ControlBean.dropBlock.get(block.getServerFilePath()).addAndGet(1);
+                }else {
+                    ControlBean.loseBlocks.add(block);
+                }
             }
         } catch (RestClientException e) {
             //这里对应 RestClientException 异常

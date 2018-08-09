@@ -1,9 +1,8 @@
-package com.ths.tasks;
+package com.laowang.tasks;
 
-import com.ths.domain.ControlBean;
-import com.ths.domain.DownloadBlock;
-import com.ths.domain.Result;
-import com.ths.utils.FileUtils;
+import com.laowang.domain.ControlBean;
+import com.laowang.domain.Result;
+import com.laowang.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -66,6 +65,7 @@ public class DropStoreThread implements Runnable {
                         log.info("===>文件{}下载失败 ，已处理完成",key);
                     }
                 });
+                // 删除处理完成的文件记录信息
                 for (int i = 0; i < files.size(); i++) {
                     ControlBean.dropBlock.remove(files.get(i));
                     ControlBean.filesCurrent.remove(files.get(i));

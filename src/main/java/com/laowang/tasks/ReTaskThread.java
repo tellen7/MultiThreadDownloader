@@ -1,7 +1,7 @@
-package com.ths.tasks;
+package com.laowang.tasks;
 
-import com.ths.domain.DownloadBlock;
-import com.ths.domain.ControlBean;
+import com.laowang.domain.DownloadBlock;
+import com.laowang.domain.ControlBean;
 import lombok.extern.slf4j.Slf4j;
 
 /**

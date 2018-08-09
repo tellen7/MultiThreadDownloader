@@ -1,10 +1,9 @@
-package com.ths.tasks;
+package com.laowang.tasks;
 
-import com.ths.domain.DownloadBlock;
-import com.ths.domain.ControlBean;
-import com.ths.utils.FileUtils;
+import com.laowang.domain.DownloadBlock;
+import com.laowang.domain.ControlBean;
+import com.laowang.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -20,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Downloader {
 
     /**20MB*/
-    private static int blockSize=20480000;
+    private static int blockSize=1000*1024*20;
     private static String url="http://0.0.0.0/multiDownload/download";
     private static String storeDir;
 
@@ -30,7 +29,7 @@ public class Downloader {
     }
 
 
-    {//第一次加载类，会开启一个reTask线程，一个写线程，3个下载线程
+    {//第一次加载类，会开启一个reTask线程，一个写线程，3个下载线程,一个善后线程
         new Thread(new ReTaskThread(),"ReTaskThread").start();
         new Thread(new WriteThread(),"writeThread").start();
         new Thread(new DownloadThread(),"downloadThread-0").start();
@@ -65,6 +64,7 @@ public class Downloader {
         //这个量不能被改变，用来记忆用户下载记录的
         ControlBean.filesTotal.put(serverFilePath, new AtomicInteger(fileNumber));
         ControlBean.filesCurrent.put(serverFilePath, new AtomicInteger(0));
+        ControlBean.dropBlock.put(serverFilePath, new AtomicInteger(0));
 
         return "ok";
     }

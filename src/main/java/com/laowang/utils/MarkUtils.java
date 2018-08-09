@@ -1,4 +1,4 @@
-package com.ths.utils;
+package com.laowang.utils;
 
 import lombok.extern.slf4j.Slf4j;
 

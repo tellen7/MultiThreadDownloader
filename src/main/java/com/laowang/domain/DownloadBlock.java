@@ -1,11 +1,10 @@
-package com.ths.domain;
+package com.laowang.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * 用来标记待下载文件的文件块信息

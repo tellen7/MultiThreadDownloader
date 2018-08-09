@@ -1,6 +1,6 @@
-package com.ths.utils;
+package com.laowang.utils;
 
-import com.ths.domain.DownloadBlock;
+import com.laowang.domain.DownloadBlock;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;

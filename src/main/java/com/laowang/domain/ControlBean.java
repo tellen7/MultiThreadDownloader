@@ -1,4 +1,4 @@
-package com.ths.domain;
+package com.laowang.domain;
 
 
 import java.util.concurrent.ConcurrentHashMap;

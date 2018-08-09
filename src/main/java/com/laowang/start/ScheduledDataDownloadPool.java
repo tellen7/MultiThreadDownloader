@@ -1,9 +1,9 @@
-package com.ths.start;
+package com.laowang.start;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import com.ths.domain.ControlBean;
-import com.ths.domain.Result;
-import com.ths.tasks.Downloader;
+import com.laowang.domain.ControlBean;
+import com.laowang.domain.Result;
+import com.laowang.tasks.Downloader;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
