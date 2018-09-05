@@ -40,7 +40,6 @@ public class DropStoreThread implements Runnable {
                 //遍历的时候有新文件添加进来，导致nullPointer？？？
                 ControlBean.filesTotal.forEach((key,value)->{
                     //download done to store file and communicate with server
-                    //System.out.println(ControlBean.filesCurrent.get(key).get()+value.get());
                     if (key!=null&&value!=null&&ControlBean.filesCurrent.get(key).get() == value.get()){
                         String fileName = key.substring(key.lastIndexOf('/') + 1);
                         String storeFile = storeDir + fileName + ".temp";
