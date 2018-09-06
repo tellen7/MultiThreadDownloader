@@ -53,7 +53,6 @@ public class DownloadController {
     Result markDownloaded(@RequestParam String serverFile, @RequestParam String token){
         //do something to change the map in fetchDataList()
         log.info("文件{}，用户{}",serverFile,token);
-        //TODO 根据token 获取用户信息，组合用户信息和serverFile，插入数据库，表示当前用户已经下载过文件
         return DownloadResultUtils.success();
     }
 
