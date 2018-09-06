@@ -23,8 +23,9 @@ public class FileUtil {
      */
     public static byte[] getFileBytesByPosition(String filePath, int start, int end) {
         File file = new File(filePath);
-        if (!file.exists() || file.isDirectory())
+        if (!file.exists() || file.isDirectory()) {
             return null;
+        }
         try {
             byte[] result = new byte[end - start];
             RandomAccessFile raf = new RandomAccessFile(file, "r");
@@ -53,7 +54,8 @@ public class FileUtil {
         if (!file.exists() || file.isDirectory()) {
             return null;
         }
-        return (int) file.length();//int 32位，最大能表示4GB，所以文件能表示4GB个byte
+        //int 32位，最大能表示4GB，所以文件能表示4GB个byte
+        return (int) file.length();
     }
 
     /**

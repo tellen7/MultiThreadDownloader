@@ -36,7 +36,7 @@ public static void main(String[] args) {
 //    ResponseEntity<byte[]> response = restTemplate.exchange("http://localhost:2568/multiDownload/download", HttpMethod.GET, httpEntity, byte[].class);;
     ResponseEntity<byte[]> r = restTemplate.postForEntity("http://localhost:2568/multiDownload/download",httpEntity,byte[].class);
     byte[] bytes = r.getBody();
-    Result result = (Result) MarkUtils.BytesToObject(bytes);
+    Result result = (Result) MarkUtils.bytesToObject(bytes);
     if (result.getCode() == Result.StatusCode.SUCCESS) {
         //缓存下载内容
         System.out.println(result.getData());

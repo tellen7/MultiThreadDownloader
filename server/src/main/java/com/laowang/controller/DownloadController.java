@@ -34,14 +34,15 @@ public class DownloadController {
             bytes = FileUtil.getFileBytesByPosition(filePath,Integer.valueOf(startPosition),Integer.valueOf(endPosition));
         } catch (NumberFormatException e) {
             log.error("===>类型转换异常,start:{} end:{}",startPosition,endPosition);
-            return MarkUtils.ObjectToBytes(DownloadResultUtils.error("待下载文件位置转换成number失败"));
+            return MarkUtils.objectToBytes(DownloadResultUtils.error("待下载文件位置转换成number失败"));
         }
         if (bytes == null) {
             log.info("===> filePath:{} start:{} end:{}",filePath,startPosition,endPosition);
-            return MarkUtils.ObjectToBytes(DownloadResultUtils.error("文件不存在或则文件IO异常"));//文件不存在或则文件IO异常
+            // 文件不存在或则文件IO异常
+            return MarkUtils.objectToBytes(DownloadResultUtils.error("文件不存在或则文件IO异常"));
         }
         log.info("===> filePath:{} start:{} end:{}",filePath,startPosition,endPosition);
-        return MarkUtils.ObjectToBytes(DownloadResultUtils.success(bytes));
+        return MarkUtils.objectToBytes(DownloadResultUtils.success(bytes));
     }
 
     /**
@@ -62,7 +63,8 @@ public class DownloadController {
     @PostMapping("/fetchDataList")
     public @ResponseBody
     Result fetchDataList(){
-        Map<String, Object> list = new HashMap<>();//filePath<---->size
+        //filePath<---->size
+        Map<String, Object> list = new HashMap<>(4);
         log.info("fetch data list.");
         list.put("C:\\Users\\viruser.v-desktop\\Downloads\\Head+First+Java+中文高清版.pdf", FileUtil.getFileLength("C:\\Users\\viruser.v-desktop\\Downloads\\Head+First+Java+中文高清版.pdf"));
         list.put("C:\\Users\\viruser.v-desktop\\Downloads\\mergesort.gif", FileUtil.getFileLength("C:\\Users\\viruser.v-desktop\\Downloads\\mergesort.gif"));

@@ -11,9 +11,10 @@ import java.io.*;
 public class MarkUtils {
 
     /**获取对象的byte数组，出现异常返回null*/
-    public static byte[] ObjectToBytes(Object var){
-        if (var == null)
+    public static byte[] objectToBytes(Object var){
+        if (var == null) {
             return null;
+        }
         try {
             ByteArrayOutputStream bo = new ByteArrayOutputStream();
             ObjectOutputStream oo = new ObjectOutputStream(bo);
@@ -33,7 +34,7 @@ public class MarkUtils {
     }
 
     /**byte数组转换成对象*/
-    public static Object BytesToObject(byte[] bytes){
+    public static Object bytesToObject(byte[] bytes){
         Object obj = null;
         try {
             ByteArrayInputStream bi = new ByteArrayInputStream(bytes);
@@ -57,10 +58,10 @@ public class MarkUtils {
 
 //    public static void main(String[] args) {
 //        Result result = new Result("序列化",Result.StatusCode.SUCCESS,"this is a data");
-//        byte[] bytes = ObjectToBytes(result);
+//        byte[] bytes = objectToBytes(result);
 //        System.out.println(JSONObject.toJSONString(bytes));
 //
-//        Result temp = (Result) BytesToObject(bytes);
+//        Result temp = (Result) bytesToObject(bytes);
 //        System.out.println(JSONObject.toJSONString(temp));
 //
 //    }
